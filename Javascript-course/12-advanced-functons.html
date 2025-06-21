@@ -71,13 +71,20 @@
 
         console.log("next line 2");
 
+        // for loop array
+        // for (let i = 0; i < array.length; i++) {
+        //  const value = array[i];
+        //  console.log(value);
+        // }
+
         // array for each loop - loop through array
+        // no return
         ["a", "b", "c"].forEach((value, index) => {
             if (value === "b") {
                 return;
             }
-            console.log(index);
-            console.log(value);
+            console.log(index); // position in array
+            console.log(value); // what is in the index
         });
 
         const regularFunction = function(param, param2) {
@@ -130,7 +137,7 @@
         // remove event listener
         buttonElement.removeEventListener("click", eventListener);
 
-        // filter
+        // filter - same as forEach
         console.log([1, -3, 5].filter((value, index) => {
             // if (value >= 0) {
             //     return true;

@@ -1,6 +1,7 @@
 import { cart, removeCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
+import "../data/cart-oop.js"
 
 // input type="radio" - same name value can only pick one
 // different can choose both.
