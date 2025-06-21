@@ -1,3 +1,5 @@
+import { cart } from "../data/cart.js";
+
 // product array-objects
 // data structure - same structure as html
 
