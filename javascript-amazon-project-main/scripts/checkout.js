@@ -1,7 +1,7 @@
 import { cart, removeCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
-import "../data/cart-oop.js"
+// import "../data/cart-class.js"
 
 // input type="radio" - same name value can only pick one
 // different can choose both.
@@ -39,7 +39,7 @@ cart.forEach((cartItem) => {
                 ${matchingProduct.name}
             </div>
             <div class="product-price">
-                $${formatCurrency(matchingProduct.priceCents)}
+                ${matchingProduct.getPrice()}
             </div>
             <div class="product-quantity">
                 <span>
