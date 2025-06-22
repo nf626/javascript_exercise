@@ -249,49 +249,93 @@ import { loadCart } from "../data/cart.js";
 /* Promises */
 // runs immediately, resolve = controls when to go to next step.
 // Promise = constructor, resolve = function
-new Promise((resolve) => {
-    console.log("start");
-    loadProducts(() => {
-        console.log("finish loading");
-        resolve("value 1"); // give a value
-    });
+// new Promise((resolve) => {
+//     console.log("start");
+//     loadProducts(() => {
+//         console.log("finish loading");
+//         resolve("value 1"); // give a value
+//     });
 
-    // then method - handles the result and what happens next
-}).then((value) => {
-    console.log("next step");
-    console.log(value);
+//     // then method - handles the result and what happens next
+// }).then((value) => {
+//     console.log("next step");
+//     console.log(value);
 
-    return new Promise((resolve) => {
-        loadCart(() => {
-            console.log("step 2");
-            resolve();
-        });
-    });
+//     return new Promise((resolve) => {
+//         loadCart(() => {
+//             console.log("step 2");
+//             resolve();
+//         });
+//     });
 
-    // renderOrderSummary();
-    // renderPaymentSummary();
-}).then(() => {
-    console.log("third step");
-});
+//     // renderOrderSummary();
+//     // renderPaymentSummary();
+// }).then(() => {
+//     console.log("third step");
+// });
 
-// Promise.all() - let's us run multiple promises at the same time.
-// wait for all to finish.
-Promise.all([
-    loadProductsFetch(),
-    new Promise((resolve) => {
-        loadProducts(() => {
-            console.log("finish loading");
-            resolve("value 1"); // give a value
-        });
-    }),
-        new Promise((resolve) => {
+// // Promise.all() - let's us run multiple promises at the same time.
+// // wait for all to finish.
+// Promise.all([
+//     loadProductsFetch(),
+//     new Promise((resolve) => {
+//         loadProducts(() => {
+//             console.log("finish loading");
+//             resolve("value 1"); // give a value
+//         });
+//     }),
+//         new Promise((resolve) => {
+//             loadCart(() => {
+//                 console.log("step 2");
+//                 resolve("value 2");
+//         });
+//     })
+
+// ]).then((values) => {
+//     console.log(values);
+//     console.log("all promises finished");
+// });
+
+
+/* Async Await */
+// async makes function a promise - shortcut for promise.
+// await = let's us wait for a promise to finish, before going to the next line.
+async function loadPage() {
+    try {
+        console.log("load page");
+
+        // throw "error"; // throw used to make user exception/error
+
+        await loadProductsFetch(); // wait to finish
+
+        // only works with promises
+        // reject = function - creates an error in the future.
+        await new Promise((resolve, reject) => {
+            // throw "error2"; // go to catch error
             loadCart(() => {
-                console.log("step 2");
-                resolve("value 2");
+                // reject("error3"); // error go to catch
+                resolve();
+            });
         });
-    })
 
-]).then((values) => {
-    console.log(values);
-    console.log("all promises finished");
-});
+        // save value3 to variable, no then()
+        const value = await new Promise((resolve) => {
+            loadCart(() => {
+                resolve("value3");
+            });
+        });
+        console.log(value);
+
+        console.log("render pages");
+
+        // return "value2";
+    } catch (error) {
+        console.log("async unexpected error", error);
+    }
+}
+loadPage();
+// .then((value) => {
+//     console.log("async next step");
+//     console.log(value);
+// });
+

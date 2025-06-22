@@ -824,13 +824,19 @@ export function loadProducts(fun) {
 
     console.log("load products");
 
-    fun();
+    // fun();
 
   });
+
+// Handle Error
+  xhr.addEventListener("error", (error) => {
+    console.log("unexpected error", error);
+  })
 
   xhr.open("GET", "https://supersimplebackend.dev/products");
   xhr.send();
 }
+loadProducts();
 
 
 /* fetch - makes http requests using promises */
@@ -860,10 +866,15 @@ export function loadProductsFetch() {
     });
 
     console.log("load products");
+  }) // catch error handle
+  .catch((error) => {
+    console.log("unexpected error", error);
   });
 
   return promise;
 }
+loadProductsFetch();
+
 // loadProductsFetch().then(() => {
 //   console.log("fetch: next step");
 // });
