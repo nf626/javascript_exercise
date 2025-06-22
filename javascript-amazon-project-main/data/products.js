@@ -810,6 +810,7 @@ console.log(tshirt.getPrice());
 // backend
 // load product function
 export let products = [];
+
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
 
@@ -830,3 +831,39 @@ export function loadProducts(fun) {
   xhr.open("GET", "https://supersimplebackend.dev/products");
   xhr.send();
 }
+
+
+/* fetch - makes http requests using promises */
+// Read the response body: It reads the entire response body stream to completion.
+// Parse as JSON: It attempts to parse the read body text as JSON (JavaScript Object Notation).
+// example: fetch('https://api.example.com/data')
+// .then(response => response.json()) // Call .json() to parse the response body as JSON
+// .then(data => {
+//   console.log(data); // 'data' is now a JavaScript object parsed from the JSON response
+// })
+// .catch(error => {
+//   console.error('Error fetching data:', error);
+// });
+export function loadProductsFetch() {
+  const promise = fetch("https://supersimplebackend.dev/products")
+  .then((response) => {
+    // console.log(response);
+    return response.json(); // get data JSON to JS object
+  }).then((productsData) => {
+    // console.log(productsData);
+
+    products = productsData.map((productDetails) => {
+      if (productDetails.type === "clothing") {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+
+    console.log("load products");
+  });
+
+  return promise;
+}
+// loadProductsFetch().then(() => {
+//   console.log("fetch: next step");
+// });

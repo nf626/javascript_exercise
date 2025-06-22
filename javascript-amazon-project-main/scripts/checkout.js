@@ -1,7 +1,7 @@
 import { cart, removeCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
-import { loadProducts } from "../data/products.js";
+import { loadProducts, loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 // import "../data/backend-practice.js";
 // import "../data/cart-class.js"
@@ -249,37 +249,39 @@ import { loadCart } from "../data/cart.js";
 /* Promises */
 // runs immediately, resolve = controls when to go to next step.
 // Promise = constructor, resolve = function
-// new Promise((resolve) => {
-//     console.log("start");
-//     loadProducts(() => {
-//         console.log("finish loading");
-//         resolve("value 1"); // give a value
-//     });
+new Promise((resolve) => {
+    console.log("start");
+    loadProducts(() => {
+        console.log("finish loading");
+        resolve("value 1"); // give a value
+    });
 
-// }).then((value) => {
-//     console.log("next step");
-//     console.log(value);
+    // then method - handles the result and what happens next
+}).then((value) => {
+    console.log("next step");
+    console.log(value);
 
-//     return new Promise((resolve) => {
-//         loadCart(() => {
-//             console.log("step 2");
-//             resolve();
-//         });
-//     });
+    return new Promise((resolve) => {
+        loadCart(() => {
+            console.log("step 2");
+            resolve();
+        });
+    });
 
-//     // renderOrderSummary();
-//     // renderPaymentSummary();
-// }).then(() => {
-//     console.log("third step");
-// });
+    // renderOrderSummary();
+    // renderPaymentSummary();
+}).then(() => {
+    console.log("third step");
+});
 
 // Promise.all() - let's us run multiple promises at the same time.
 // wait for all to finish.
 Promise.all([
-        new Promise((resolve) => {
-            loadProducts(() => {
-                console.log("finish loading");
-                resolve("value 1"); // give a value
+    loadProductsFetch(),
+    new Promise((resolve) => {
+        loadProducts(() => {
+            console.log("finish loading");
+            resolve("value 1"); // give a value
         });
     }),
         new Promise((resolve) => {
