@@ -103,6 +103,37 @@ const tshirt = new Clothing({
 console.log("a", tshirt);
 console.log(tshirt.getPrice());
 
+
+new date object - inbuilt
+const date = new Date();
+console.log(date);
+
+console.log(this); // = undefined inside js modules.
+
+const object2 = {
+  a: 2,
+  b: this.a, // = undefined object2 has not been created
+};
+
+// inside function, we can change "this" to whatever we want.
+// .call()
+function logThis() {
+  console.log(this);
+}
+logThis();
+logThis.call();
+console.log(logThis.call("hello"));
+
+// arrow function do not change the value "this".
+// "this" will have the same value as outside the arrow function.
+this
+const object3 = {
+  method: () => {
+    console.log(this);
+  }
+};
+object3.method();
+
 // create new object
 // map creates new array - has return
 export const products = [
@@ -773,4 +804,4 @@ export const products = [
   return new Product(productDetails);
 });
 
-console.log(products);
+// console.log(products);
