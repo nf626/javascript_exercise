@@ -1,7 +1,7 @@
 // data structure
 import { formatCurrency } from "../scripts/utils/money.js";
 
-// Class
+// Class - Parent class
 class Product {
   // properties
   id;
@@ -27,6 +27,11 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return "";
+  }
+
 }
 
 const product1 = new Product({
@@ -46,6 +51,57 @@ const product1 = new Product({
   });
 
 console.log(product1);
+
+
+// Inheritance - lets us reuse code between classes
+// child class - more specific details
+class Clothing extends Product {
+  // properties
+  sizeChartLink;
+
+  // constructor
+  constructor(productDetails) {
+    // calls constructor of parent class
+    super(productDetails);
+
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  // method - size chart
+  // method override - polymorphism -
+  // use a method without knowing the class
+  extraInfoHTML() {
+    // calls parents method
+    // super.extraInfoHTML();
+
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">
+    Size Chart
+    </a>
+    `;
+  }
+}
+
+const tshirt = new Clothing({
+    id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
+    image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
+    name: "Adults Plain Cotton T-Shirt - 2 Pack",
+    rating: {
+      stars: 4.5,
+      count: 56
+    },
+    priceCents: 799,
+    keywords: [
+      "tshirts",
+      "apparel",
+      "mens"
+    ],
+    type: "clothing",
+    sizeChartLink: "../images/clothing-size-chart.png"
+});
+
+console.log("a", tshirt);
+console.log(tshirt.getPrice());
 
 // create new object
 // map creates new array - has return
@@ -709,6 +765,11 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  // discriminator property = type. eg: type: "clothing"
+  // tells us which class to convert to.
+  if (productDetails.type === "clothing") {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 });
 
