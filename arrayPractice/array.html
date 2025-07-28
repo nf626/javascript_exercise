@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <script>
+        // Create an Array
+        const array1 = [];
+
+        // Add to array
+        array1[0] = 1;
+        array1[1] = 'string';
+        array1[2] = true;
+        array1[3] = () => {console.log('hello');}
+
+        console.log("Array 1:", array1);
+
+        const array2 = new Array("l", 2, "h");
+        console.log("Array 2:", array2);
+
+        // Create an array with 40 undefined elements:
+        const points = new Array(40); // don't use = length
+
+        // Change array
+        array1[0] = 'hello';
+        console.log("Array 1:", array1);
+
+        array2[0] = 30;
+        console.log("Array 2:", array2);
+
+        // Convert to string
+        console.log('String:', array1.toString());
+        
+        // Access function in array
+        console.log("Array function:", array1[3]());
+
+        // Array Properties and Methods - builtin
+        const aP = array1.length;
+        const aM = array2.sort();
+
+        console.log('length:', aP);
+        console.log('sort:', aM);
+
+        // Nested Arrays and Objects
+        const myObj = {
+        name: "John",
+        age: 30,
+        cars: [
+            {name: "Ford", models: ["Fiesta", "Focus", "Mustang"]},
+            {name: "BMW", models: ["320", "X3", "X5"]},
+            {name: "Fiat", models: ["500", "Panda"]}
+        ]
+        };
+
+        for (let i in myObj.cars) {
+            for (let j in myObj.cars[i].models) {
+                console.log(myObj.cars[i].models[j]);
+            }
+        };
+
+
+        /* Methods */
+        // Length
+        const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        console.log('Length', fruits.length);
+
+        fruits.length = 2;
+        console.log('Set Length', fruits.length);
+
+        // Array at()
+        const fruits1 = ["Banana", "Orange", "Apple", "Mango"];
+        console.log(fruits1.at(2));
+
+        // Array join()
+        // joins all array elements into a string.
+        console.log('Join:', fruits.join(", "));
+
+        /* Pop and Push */
+        // Array pop()
+        const fruits2 = ["Banana", "Orange", "Apple", "Mango"];
+        console.log('Pop:', fruits2.pop());
+
+        // Array push()
+        console.log('Push:', fruits2.push('Kiwi'));
+        console.log('Push:', fruits2);
+
+        // Array shift()
+        // Shifting is equivalent to popping,
+        // but working on the first element instead of the last.
+        const fruits3 = ["Banana", "Orange", "Apple", "Mango"];
+        const f = fruits3.shift();
+        console.log('Shift:', f);
+
+        // Array unshift()
+        // unshift() method adds a new element to an array (at the beginning)
+        // and "unshifts" older elements.
+        const uf = fruits3.unshift('lemon');
+        console.log('Unshift:', uf, fruits3);
+
+        // Array concat()
+        const myGirls = ["Cecilie", "Lone"];
+        const myBoys = ["Emil", "Tobias", "Linus"];
+        const myChildren = myGirls.concat(myBoys); // It always returns a new array.
+        console.log(myChildren);
+
+
+        /* Flattening an array is the process of reducing the
+        dimensionality of an array.
+        Flattening is useful when you want to convert a multi-dimensional
+        array into a one-dimensional array. */
+        // Array flat()
+        const myArr = [[1,2],[3,4],[5,6]];
+        const newArr = myArr.flat();
+        console.log('Flat:', newArr);
+
+        // flatMap() method first maps all elements of an array
+        // then creates a new array by flattening the array.
+        const myArr2 = [1, 2, 3, 4, 5, 6];
+        const newArr2 = myArr2.flatMap(x => [x, x * 10]);
+        console.log('Flat map:', newArr2);
+
+        // Array splice()
+        // add new items to an array
+        const fruits4 = ["Banana", "Orange", "Apple", "Mango"];
+        const spl = fruits4.splice(2, 0, "Lemon", "Kiwi");
+        console.log('Splice:', fruits4);
+
+        // Array toSpliced()
+        // new method creates a new array,
+        // keeping the original array unchanged,
+        // while the old method altered the original array.
+        const months = ["Jan", "Feb", "Mar", "Apr"];
+        const spliced = months.toSpliced(0, 1);
+        console.log('Original:', months);
+        console.log('toSplice:', spliced);
+
+        // Array slice()
+        // slices out a piece of an array into a new array
+        const fruits5 = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+        const citrus = fruits5.slice(1); // new array, original not touched
+        console.log('Original:', fruits5);
+        console.log('Slice:', citrus);
+
+        
+        /* Alphabetic Sort */
+        //sort()
+        const fruits6 = ["Banana", "Orange", "Apple", "Mango"];
+        console.log('Sort:', fruits6.sort());
+
+        // reverse()
+        // reverses the elements in an array
+        const fruits7 = ["Banana", "Orange", "Apple", "Mango"];
+        console.log('Reverse:', fruits7.reverse());
+
+        // toSorted() - safe way, does not alter original
+        const months1 = ["Jan", "Feb", "Mar", "Apr"];
+        const sorted = months1.toSorted();
+        console.log('Original:', months1);
+        console.log('toSorted:', sorted);
+
+        // toReversed() - safe way, does not alter original
+        const months2 = ["Jan", "Feb", "Mar", "Apr"];
+        const reversed = months2.toReversed();
+        console.log('Original:', months2);
+        console.log('toReversed:', reversed);
+
+        /* Numeric Sort */
+        // sort(function(a, b){return a - b})
+        const points1 = [40, 100, 1, 5, 25, 10];
+        console.log(points1.sort(function(a, b){return a - b}));
+
+        // descending
+        console.log(points1.sort(function(a, b){return b - a}));
+
+
+        /* Iteration */
+        // Array forEach()
+        const numbers = [45, 4, 9, 16, 25];
+        const num = numbers.forEach((value, index, numbers) => {
+            console.log('Foreach:', value);
+        });
+
+        // Array map()
+        const numbers1 = [45, 4, 9, 16, 25];
+        const numbers2 = numbers1.map(myFunction);
+
+        function myFunction(value, index, array) {
+            console.log('Map:', value * 2);
+        }
+
+        // Array flatMap()
+        const myArr1 = [1, 2, 3, 4, 5, 6];
+        const newArr1 = myArr1.flatMap((value) => value * 2);
+        console.log('FlatMap:', newArr1);
+
+        // Array filter()
+        const numbers3 = [45, 4, 9, 16, 25];
+        const over18 = numbers3.filter(myFunction);
+        console.log('Filter:', over18);
+
+        function myFunction(value, index, array) {
+            return value > 18;
+        }
+
+        // Array reduce()
+        const numbers4 = [45, 4, 9, 16, 25];
+        let sum = numbers4.reduce(myFunction2);
+        console.log('Reduce:', sum);
+
+        function myFunction2(total, value, index, array) {
+            return total + value;
+        }
+
+        // Array reduceRight()
+        const numbers5 = [45, 4, 9, 16, 25];
+        let sum1 = numbers5.reduceRight(myFunction3);
+        console.log('Reduce right:', sum1);
+
+        function myFunction3(total, value, index, array) {
+            return total + value;
+        }
+
+        // Array every()
+        // checks if all array values pass a test.
+        const numbers6 = [45, 4, 9, 16, 25];
+        let allOver18 = numbers6.every(myFunction);
+        console.log('Every:', allOver18);
+
+        function myFunction(value, index, array) {
+            return value > 18;
+        }
+
+        // Array some()
+        const numbers7 = [45, 4, 9, 16, 25];
+        let someOver18 = numbers7.some(myFunction);
+        console.log('Some:', someOver18);
+
+        function myFunction(value, index, array) {
+        return value > 18;
+        }
+
+        // Array.from()
+        // returns an Array object from:
+        // Any iterable object
+        // Any object with a length property
+        let text = "ABCDEFG";
+        console.log('From:', Array.from(text));
+
+        // optional parameter
+        const myNumbers = [1,2,3,4];
+        const myArr3 = Array.from(myNumbers, (x) => x * 2);
+        console.log('Parameter:', myArr3);
+
+
+        // Array keys()
+        // returns an Array Iterator object with the keys of an array.
+        const fruits8 = ["Banana", "Orange", "Apple", "Mango"];
+        const keys = fruits8.keys();
+
+        for (let x of keys) {
+            console.log('Keys:', x);
+        }
+
+        // Array entries()
+        // iterate over the key/value pairs.
+        const fruits9 = ["Banana", "Orange", "Apple", "Mango"];
+        const fruit = fruits9.entries();
+
+        for (const element of fruit) {
+            console.log('Entries:', element);
+        }
+
+        // Array with()
+        // safe way to update elements in an array
+        // without altering the original array.
+        const months3 = ["Januar", "Februar", "Mar", "April"];
+        const myMonths = months3.with(2, "March");
+        console.log('Original:', months3);
+        console.log('With', myMonths);      
+
+        // Array Spread (...)
+        // ... operator expands an array into individual elements.
+        // This can be used join arrays:
+        const arr1 = [1, 2, 3];
+        const arr2 = [4, 5, 6];
+        const arr3 = [...arr1, ...arr2];
+        console.log('Spread:', arr3);
+
+        // copy an array
+        const arr4 = [...arr3];
+        console.log('Copy:', arr4);
+
+        // pass arguments to a function
+        const numbers8 = [23,55,21,87,56];
+        let minValue = Math.min(...numbers8);
+        let maxValue = Math.max(...numbers8);
+        console.log('Pass argument:', minValue, maxValue);
+
+        // Array Rest (...)
+        // destruct an array and collect the leftovers.
+        let a, rest;
+        const arr5 = [1,2,3,4,5,6,7,8];
+        [a, ...rest] = arr5;
+        console.log('Destructure:', 'a:', a, rest);
+
+
+
+    </script>
+</body>
+</html>
