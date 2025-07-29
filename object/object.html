@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <script>
+        
+        /* What is this?
+        In JavaScript, the this keyword refers to an object.
+        The this keyword refers to different objects depending on how it is used:
+        - In an object method, this refers to the object.
+        - Alone, this refers to the global object.
+        - In a function, this refers to the global object.
+        - In a function, in strict mode, this is undefined.
+        - In an event, this refers to the element that received the event.
+        - Methods like call(), apply(), and bind() can refer this to any object.*/
+
+        // Class
+        // create a class
+        // Always add a method named constructor().
+        class Car {
+            // called automatically when a new object is created.
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+        }
+
+        // use the class to create objects:
+        const myCar1 = new Car("Ford", 2014);
+        const myCar2 = new Car("Audi", 2019);
+
+        console.log('Car1:', myCar1.name, myCar1.year);
+        console.log('Car2:', myCar2.name, myCar2.year);
+
+        /* The constructor method is a special method:
+            - It has to have the exact name "constructor"
+            - It is executed automatically when a new object is created
+            - It is used to initialize object properties
+            If you do not define a constructor method,
+            JavaScript will add an empty constructor method.
+        */
+       // Class Methods
+       class Car1 {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+            // shorthand method
+            age() {
+                const date = new Date();
+                return date.getFullYear() - this.year;
+            }
+        }
+
+        const myCar = new Car1("Ford", 2014);
+        console.log('Method:', myCar.age());
+
+        // Class Inheritance
+        class CarParent {
+            constructor(brand) {
+                this.carname = brand;
+            }
+
+            present() {
+                return 'I have a ' + this.carname;
+            }
+        }
+
+        class Model extends CarParent {
+            constructor(brand, mod) {
+                super(brand);
+                this.model = mod;
+            }
+            
+            show() {
+                return this.present() + ', it is a ' + this.model;
+            }
+        }
+
+        const myCarI = new Model("Ford", "Mustang");
+        console.log('Inherit:', myCarI.show());
+
+        /*
+        The super() method refers to the parent class.
+        By calling the super() method in the constructor method,
+        we call the parent's constructor method and gets access to the
+        parent's properties and methods.
+        */
+
+        // Getters and Setters
+        class Car2 {
+            constructor(brand) {
+                this._carname = brand;
+            }
+            // get keyword
+            get carname() {
+                return this._carname;
+            }
+            // set keyword
+            set carname(x) {
+                this._carname = x;
+            }
+        }
+
+        const gsCar = new Car2('Ford');
+        gsCar.carname = 'Volvo'; // 
+        console.log('Getter and Setter:', gsCar.carname);
+
+        // Static class methods
+        // Static class methods are defined on the class itself.
+        // You cannot call a static method on an object,
+        // only on an object class.
+        class Car3 {
+            constructor(name) {
+                this.name = name;
+            }
+            static hello() {
+                return "Hello!!";
+            }
+            }
+
+            const myCar3 = new Car3("Ford");
+
+            // You can call 'hello()' on the Car Class:
+            console.log('Static:', Car3.hello());
+            // console.log('Static error:', myCar3.hello());
+
+            // But NOT on a Car Object:
+            // document.getElementById("demo").innerHTML = myCar.hello();
+            // this will raise an error. 
+
+            // If you want to use the myCar object inside the static\
+            // method, you can send it as a parameter:
+            console.log('Static param:', Car3.hello(myCar3));
+
+
+    </script>
+</body>
+</html>

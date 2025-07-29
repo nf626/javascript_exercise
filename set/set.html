@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set</title>
+</head>
+<body>
+    <script>
+        /* 
+        A JavaScript Set is a collection of unique values.
+        Each value can only occur once in a Set.
+        The values can be of any type, primitive values or objects.
+        */
+
+        // Create a Set        
+        // Passing an array to new Set()
+        // Create an empty set and use add() to add values
+        const letters = new Set(["a","b","c"]);
+        console.log(letters);
+
+        const letters1 = new Set();
+        letters1.add("a");
+        letters1.add("b");
+        letters1.add("c");
+        letters1.add('d');
+        console.log('Add:', letters1);
+
+        // List all Elements
+        for (const x of letters) {
+            console.log('List:', x);
+        }
+
+        // Property and Method
+        // size Property
+        console.log('size:', letters.size);
+
+        // has()
+        // returns true if a specified value exists in a set.
+        answer = letters.has("d");
+        console.log('Has:', answer);
+
+    </script>
+</body>
+</html>

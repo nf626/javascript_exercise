@@ -185,10 +185,11 @@
 
         // Array map()
         const numbers1 = [45, 4, 9, 16, 25];
-        const numbers2 = numbers1.map(myFunction);
+        const numbers2 = numbers1.map(myFunction4);
+        console.log('Map:', numbers2);
 
-        function myFunction(value, index, array) {
-            console.log('Map:', value * 2);
+        function myFunction4(value, index, array) {
+            return value * 2;
         }
 
         // Array flatMap()
@@ -307,6 +308,68 @@
         console.log('Destructure:', 'a:', a, rest);
 
 
+        /* For In Loop
+        loops through the properties of an Object.
+        The for in loop iterates over a person object
+        Each iteration returns a key (x)
+        The key is used to access the value of the key
+        The value of the key is person[x]. */
+        const person = {fname:"John", lname:"Doe", age:25};
+
+        for (let x in person) {
+            console.log('For in Obj:', person[x]);
+        }
+
+        // Array
+        // Do not use for in over an Array if the index order is important.
+        const numbers9 = [45, 4, 9, 16, 25];
+        for (let x in numbers9) {
+            console.log('For in Array:', numbers9[x]);
+        }
+
+        // Array.forEach()
+        const numbers10 = [45, 4, 9, 16, 25];
+        numbers10.forEach(myFunction);
+
+        function myFunction(value, index, array) {
+            console.log('Foreach:', value);
+        }
+
+        // For Of Loop
+        // loops through the values of an iterable object.
+        // It lets you loop over iterable data structures
+        // such as Arrays, Strings, Maps, NodeLists, and more.
+        const cars1 = ["BMW", "Volvo", "Mini"];
+        for (let x of cars1) {
+            console.log('For of:', x);
+        }
+
+        /* Array prototype */
+        // Array.prototype.name = value.
+        // Create a method that transforms
+        // array values into upper case:
+        Array.prototype.myUcase = function() {
+            for (let i = 0; i < this.length; i++) {
+                this[i] = this[i].toUpperCase();
+            }
+        };
+
+        const upperFruits = ["Banana", "Orange", "Apple", "Mango"];
+        upperFruits.myUcase();
+        console.log('MyUCase:', upperFruits);
+
+        // prototype allows you to add new properties and methods to arrays.
+        // prototype is a property available with all JavaScript objects.
+        function Person(first, last, age, eyecolor) {
+            this.firstName = first;
+            this.lastName = last;
+            this.eyeColor = eyecolor;
+        }
+        Person.prototype.nationality = "English";
+
+        const dad = new Person("John", "Doe", "blue");
+        console.log('Function property:', dad.nationality);
+        
 
     </script>
 </body>
