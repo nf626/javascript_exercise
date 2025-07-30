@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const nums = [3,2,4];
+        const target = 6;
+
+        const twoSum = function(nums, target) {
+            // option: Nested For loop
+            for (let i = 0; i < nums.length; i++) {
+                for (let j = i + 1; j < nums.length; j++) {
+                    if (nums[i] + nums[j] === target) {
+                        return [i, j];
+                    }
+                }
+            }
+            return [];
+
+            // option: Map
+            const mapArray = new Map();
+            for (let i = 0; i < nums.length; i++) {
+                const current = nums[i];
+                const dif = target - current;
+                if (mapArray.has(dif)) {
+                    return [mapArray.get(dif), i];
+                }
+                mapArray.set(current, i);
+            }
+            return [];
+        };
+
+        console.log(twoSum(nums, target));
+
+    </script>
+</body>
+</html>
