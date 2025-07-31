@@ -8,34 +8,162 @@
 <body>
     <script>
 
-        const nums = [3,2,4];
-        const target = 6;
+        /* twoSum */
+        // const nums = [3,2,4];
+        // const target = 6;
 
-        const twoSum = function(nums, target) {
-            // option: Nested For loop
-            for (let i = 0; i < nums.length; i++) {
-                for (let j = i + 1; j < nums.length; j++) {
-                    if (nums[i] + nums[j] === target) {
-                        return [i, j];
-                    }
-                }
-            }
-            return [];
+        // const twoSum = function(nums, target) {
+        //     // option: Nested For loop
+        //     for (let i = 0; i < nums.length; i++) {
+        //         for (let j = i + 1; j < nums.length; j++) {
+        //             if (nums[i] + nums[j] === target) {
+        //                 return [i, j];
+        //             }
+        //         }
+        //     }
+        //     return [];
 
-            // option: Map
-            const mapArray = new Map();
-            for (let i = 0; i < nums.length; i++) {
-                const current = nums[i];
-                const dif = target - current;
-                if (mapArray.has(dif)) {
-                    return [mapArray.get(dif), i];
-                }
-                mapArray.set(current, i);
-            }
-            return [];
+        //     // option: Map
+        //     const mapArray = new Map();
+        //     for (let i = 0; i < nums.length; i++) {
+        //         const current = nums[i];
+        //         const dif = target - current;
+        //         if (mapArray.has(dif)) {
+        //             return [mapArray.get(dif), i];
+        //         }
+        //         mapArray.set(current, i);
+        //     }
+        //     return [];
+        // };
+        // console.log(twoSum(nums, target));
+
+        // /* to be or not to be */
+        // const expect = function(val) {
+        //     return {
+        //         toBe: (beVal) => {
+        //             if (beVal === val) {
+        //                 return true;
+        //             } else {
+        //                 throw new Error("Not Equal");
+        //             }
+        //         },
+        //         notToBe: (noVal) => {
+        //             if (noVal !== val) {
+        //                 return true;
+        //             } else {
+        //                 throw new Error("Equal");
+        //             }
+        //         }
+        //     };
+        // };
+
+        // /* Counter 2 */
+        // const createCounter = function(init) {
+        //     let current = init;
+
+        //     return {
+        //         increment: () => {
+        //             current++;
+        //             return current;
+        //         },
+        //         decrement: () => {
+        //             current--;
+        //             return current;
+        //         },
+        //         reset: () => {
+        //             current = init;
+        //             return current;
+        //         }
+        //     };
+        // };
+        // createCounter(5).increment();
+        // createCounter(5).decrement();
+        // createCounter(5).reset();
+
+        // /* map array */
+        // var map = function(arr, fn) {
+        //     let newMap = [];
+        //     arr.forEach((value, index) => {
+        //         const n = fn(value, index);
+        //         newMap.push(n);
+        //     })
+        //     console.log(newMap);
+
+        //     // const ans = new Array(arr.length); //Creating an array with a specified length (elements are undefined)
+        //     //     for (let i = 0; i < arr.length; i++) {
+        //     //         ans[i] = fn(arr[i], i);
+        //     //     }
+        //     //     console.log(ans);
+        // };
+
+        // function plusone(n) { return n + 1; }
+        // function plusI(n, i) { return n + i; }
+        // function constant(n, i) { return 42; }
+        // const arr = [1,2,3];
+        // map(arr, plusI);
+
+        // /* Filter */
+        // const filter = function(arr, fn) {
+        //     let newArray = [];
+        //     for (let i = 0; i < arr.length; i++) {
+        //         if (fn(arr[i], i)) {
+        //             newArray.push(arr[i]);
+        //         }
+        //     }
+        //     console.log(newArray);
+        // };
+
+        // const arr1 = [-2,-1,0,1,2];
+        // const fn1 = function greaterThan10(n) { return n > 10; };
+        // const fn2 = function firstIndex(n, i) { return i === 0; };
+        // const fn3 = function plusOne(n) { return n + 1 };
+        // filter(arr1, fn3);
+
+        // /* Reduce */
+        // var reduce = function(nums, fn, init) {
+        //     let n = init;
+        //     for (let i = 0; i < nums.length; i++) {
+        //         n = fn(n, nums[i]);
+        //     }
+        //     console.log(n);
+        // };
+
+        // const nums1 = [1,2,3,4];
+        // const fn4 = function sum(accum, curr) { return accum + curr * curr; };
+        // const init = 50;
+        // reduce(nums1, fn4, init);
+
+        /* Function composition */
+        const compose = function(functions) {  
+            return function(x) {
+                return functions.reduceRight((acc, fn) => {
+                    return fn(acc);
+                }, x);
+            };
         };
 
-        console.log(twoSum(nums, target));
+        /* Return length of Arguments */
+        const argumentsLength = function(...args) {
+            console.log(args.length);
+        };
+        argumentsLength([5]);
+    
+        /* Allow one function call */
+        const once = function(fn) {
+            let called = false;
+            let total;
+            return function(...args){
+                if (!called) {
+                    called = true;
+                    total = fn.apply(this, args);
+                    return total;
+                } else {
+                    return undefined;
+                }
+            };
+        };
+        const fn = (a,b,c) => (a + b + c);
+        const calls = [[1,2,3],[2,3,6]];
 
     </script>
 </body>
