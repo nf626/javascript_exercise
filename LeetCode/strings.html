@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+</head>
+<body>
+    <script>
+        // Roman to Integer
+        // const romanToInt = function(s) {
+        //     const romanObj = {
+        //         'I': 1,
+        //         'V': 5,
+        //         'X': 10,
+        //         'L': 50,
+        //         'C': 100,
+        //         'D': 500,
+        //         'M': 1000
+        //     };
+        //     // II = 1 + 1, IV = 4
+        //     let sum = 0;
+        //     for (let i = 0; i < s.length; i++) {
+        //         const current = romanObj[s[i]];
+        //         const next = romanObj[s[i + 1]];
+        //         if (next > current) {
+        //             sum = sum + (next - current);
+        //             i++;
+        //         } else {
+        //             sum = sum + current;
+        //         }
+        //     }
+        //     console.log(sum);
+        // };
+        // romanToInt('VI');
+
+        // longest prefix
+        const longestCommonPrefix = function(strs) {
+            let prefix = strs[0];
+            for (let i = 1; i < strs.length; i++) {
+                while (strs[i].indexOf(prefix) !== 0) {
+                    prefix = prefix.substring(0, prefix.length - 1);
+                    if (prefix === '') {
+                        return '';
+                    }
+                }
+            }
+            console.log(prefix);
+        };
+        longestCommonPrefix(["flower","flow","flight"]);
+
+        //
+
+    </script>
+</body>
+</html>

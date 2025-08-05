@@ -165,6 +165,42 @@
         const fn = (a,b,c) => (a + b + c);
         const calls = [[1,2,3],[2,3,6]];
 
+        /* Add two promises */
+        const addTwoPromises = async function(promise1, promise2) {
+            const [value1, value2] = await Promise.all([promise1, promise2]);
+            console.log(value1 + value2);
+
+            // const res = await Promise.all([promise1, promise2])
+            // return res.reduce((acc, p) => acc + p)
+        };
+        const promise1 = new Promise(resolve => setTimeout(() => resolve(2), 20)); 
+        const promise2 = new Promise(resolve => setTimeout(() => resolve(5), 60));
+        addTwoPromises(promise1, promise2);
+
+        /* Sleep */
+        async function sleep(millis) {
+            return new Promise((resolve) => {
+                setTimeout(resolve, millis);
+            });
+        }
+        const millis = 100;
+
+        /* Timeout cancellation */
+        const cancellable = function(fn, args, t) {
+            const timeOut = setTimeout(() => {
+                fn(...args);
+            }, t);
+            const cancelFn = () => {
+                clearTimeout(timeOut);
+            };
+            return cancelFn;
+
+            // const timeoutId = setTimeout(() => {
+            //     return fn(...args)
+            // },t)
+            // return () => clearTimeout(timeoutId)
+        };
+
     </script>
 </body>
 </html>
