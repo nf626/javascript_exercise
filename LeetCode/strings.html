@@ -35,21 +35,139 @@
         // romanToInt('VI');
 
         // longest prefix
-        const longestCommonPrefix = function(strs) {
-            let prefix = strs[0];
-            for (let i = 1; i < strs.length; i++) {
-                while (strs[i].indexOf(prefix) !== 0) {
-                    prefix = prefix.substring(0, prefix.length - 1);
-                    if (prefix === '') {
-                        return '';
-                    }
-                }
-            }
-            console.log(prefix);
-        };
-        longestCommonPrefix(["flower","flow","flight"]);
+        // const longestCommonPrefix = function(strs) {
+        //     let prefix = strs[0];
+        //     for (let i = 1; i < strs.length; i++) {
+        //         while (strs[i].indexOf(prefix) !== 0) {
+        //             prefix = prefix.substring(0, prefix.length - 1);
+        //             if (prefix === '') {
+        //                 return '';
+        //             }
+        //             console.log(strs[i].indexOf(prefix));
+        //         }
+        //     }
+        //     console.log(prefix);
+        // };
+        // longestCommonPrefix(["flower","flow","flight"]);
 
-        //
+        // Valid parenthesis
+        // var isValid = function(s) {
+        //     const stack = [];
+        //     const obj = {
+        //         ')': '(',
+        //         '}': '{',
+        //         ']': '[',
+        //     };
+        //     for (let i = 0; i < s.length; i++) {
+        //         const char = s[i];
+        //         if (obj[char]) {
+        //             if (stack.length === 0 || stack.pop() !== obj[char]) {
+        //                 return false;
+        //             }
+        //         } else {
+        //             stack.push(char);
+        //         }
+        //     }
+        //     return stack.length === 0;
+        // };
+        // isValid('()');
+
+        // find the index of the first occurrence in a string
+        // const strStr = function(haystack, needle) {
+        //     if (needle.length === 0) {
+        //         return 0;
+        //     }
+        //     if (haystack.length < needle.length) {
+        //         return -1;
+        //     }
+        //     for (let i = 0; i <= haystack.length - needle.length; i++) {
+        //         let match = true;
+        //         for (let j = 0; j < needle.length; j++) {
+        //             if (haystack[i + j] !== needle[j]) {
+        //                 match = false;
+        //                 break;
+        //             }
+        //         }
+        //         if (match) {
+        //             return i;
+        //         }
+        //     }
+        //     return -1;
+        // };
+        // const haystack = "a", needle = "a";
+        // strStr(haystack, needle);
+
+        // Length of last word
+        // const lengthOfLastWord = function(s) {
+        //     const st = s.trim();
+        //     const l = st.split(" ");
+        //     const lastWord = l[l.length - 1];
+        //     console.log(lastWord.length);
+        // };
+        // lengthOfLastWord(s = "   fly me   to   the moon  ");
+
+        // add binary
+        // const addBinary = function(a, b) {
+        //     const decA = BigInt(`0b${a}`);
+        //     console.log(decA);
+        //     const decB = BigInt(`0b${b}`);
+        //     const sum = decA + decB;
+        //     console.log(sum.toString(2));
+        //     return (sum.toString(2));
+        // };
+        // addBinary(a = '11', b = '1');
+
+        // Valid palindrome
+        // const isPalindrome = function(s) {
+        //     const cleanedString = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+        //     let left = 0;
+        //     let right = cleanedString.length - 1;
+        //     console.log(right);
+        //     while (left < right) {
+        //         if (cleanedString[left] !== cleanedString[right]) {
+        //             return false; // Not a palindrome
+        //         }
+        //         left++;
+        //         right--;
+        //     }
+        //     return true; // Is a palindrome
+        // };
+        // isPalindrome(s = "A man, a plan, a canal -- Panama");
+
+        // Isomorphic Strings
+        // var isIsomorphic = function(s, t) {
+        //     if (s.length !== t.length) {
+        //         return false;
+        //     }
+        //     let objS = {};
+        //     let objT = {};
+        //     for (const i = 0; i < s.length; i++) {
+        //         charS = s[i];
+        //         charT = t[i];
+        //         if (objS[charS] === undefined) {
+        //             objS[charS] = charT;
+        //         } else if (objS[charS] !== charT) {
+        //             return false;
+        //         }
+        //         if (objT[charT] === undefined) {
+        //             objT[charT] = charS;
+        //         } else if (objT[charT] !== charS) {
+        //             return false;
+        //         }
+        //     }
+        //     return true;
+        // };
+        // isIsomorphic(s = "egg", t = "add");
+
+        // Valid anagram
+        const isAnagram = function(s, t) {
+            if (s.length !== t.length) {
+                return false;
+            }
+            console.log(s.split('').sort().join('') === t.split('').sort().join(''));
+            return s.split('').sort().join('') === t.split('').sort().join('');
+        };
+        isAnagram(s = "rat", t = "car");
 
     </script>
 </body>
